@@ -1,0 +1,28 @@
+{
+  "name": "tracker-github",
+  "version": "1.0.0",
+  "description": "Convert W3C tracker issues into GitHub issues",
+  "main": "tracker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plehegar/tracker-github.git"
+  },
+  "keywords": [
+    "w3c",
+    "tracker",
+    "github"
+  ],
+  "author": "plh@w3.org",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/plehegar/tracker-github/issues"
+  },
+  "homepage": "https://github.com/plehegar/tracker-github#readme",
+  "dependencies": {
+    "es6-promise": "^3.0.2",
+    "whacko": "^0.18.1"
+  }
+}
