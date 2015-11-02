@@ -2,7 +2,7 @@ var io = require('./io-promise');
 
 // settings for HTTP requests
 var settings = {};
-settings.auth = "6563aba4c55a0d62f4105073770fd8afe6878293:x-oauth-basic";
+settings.auth = "<your-token>:x-oauth-basic";
 settings.headers = {'user-agent': 'Node.js/w3c-tracker2github'};
 settings.delay = 2; // let's be nice to GitHub
 
