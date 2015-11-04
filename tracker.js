@@ -1,6 +1,11 @@
 var whacko = require("whacko");
 var io = require("./io-promise");
 
+if (process.argv[2] === undefined) {
+  console.error("You're missing the link to all tracker issues");
+  process.exit(1);
+}
+
 var products = [];
 // ensure uniq products
 function getProduct(name) {
@@ -49,8 +54,8 @@ settings.delay = 2; // let's be nice to W3C
 function iter(issues, index) {
   var issue = issues[index];
   var process =
-//     io.fetch(issue.url, settings).then(function(res) {return res.text();})
-   io.read("files/"+issue.number)
+    io.fetch(issue.url, settings).then(function(res) {return res.text();})
+//   io.read("files/"+issue.number)
       .then(function (data) {
         console.log("Got " + issue.url);
         return data;
@@ -91,8 +96,8 @@ io.readJSON("products.json").then(function (data) {
   // products.json doesn't exist or is unreadeable, so create an empty one
   products = [];
 }).then(function () {
-//  return io.fetch(process.argv[2]).then(function(res) {return res.text();})
-  return io.read("issues.html")
+  return io.fetch(process.argv[2]).then(function(res) {return res.text();})
+//  return io.read("issues.html")
       .then(function (data) {
         console.log("Got data");
         return data;
