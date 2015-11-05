@@ -23,10 +23,9 @@ function processIssue(issues, idx) {
   beacon.state = issue.state;
   beacon.labels = issue.product.labels;
 
-  console.log("Repo: https://api.github.com/repos/w3c/" +
-                    issue.product.repo + "/issues");
-  return io.post("https://api.github.com/repos/plehegar/" +
-                 "dummy" + "/issues",
+  var repo = "https://api.github.com/repos/w3c/" +
+                    issue.product.repo + "/issues";
+  return io.post(repo,
                  beacon,
                  settings)
     .then(function (res) {
@@ -56,7 +55,7 @@ function processIssue(issues, idx) {
       return data; // fallback
     }).catch(function (err) {
       // save the faulty beacon
-      io.saveJSON("error-beacon-" + issue.number + ".json", beacon);
+      io.save("error-beacon-" + issue.number + ".json", beacon);
       throw err;
     }).then(function () {
       if ((idx+1) >= issues.length) {
@@ -88,6 +87,7 @@ io.readJSON("tracker-list.json").then(function(data) {
   });
 }).then(function (issues) {
   if (issues.length > 0) {
+    console.log("Sending " + issues.length + " to github.")
     return processIssue(issues, 0);
   } else {
     return 0;
